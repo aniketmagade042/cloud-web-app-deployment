@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud Guestbook</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #1a1a1a; }
+    h1 { margin-bottom: .2rem; }
+    .badge { display: inline-block; background: #e8f0fe; color: #174ea6; border-radius: 999px; padding: 2px 10px; font-size: .8rem; }
+    form { display: grid; gap: .6rem; margin: 1.5rem 0; }
+    input, textarea, button { font: inherit; padding: .6rem; border: 1px solid #bbb; border-radius: 8px; }
+    button { background: #174ea6; color: #fff; border: 0; cursor: pointer; }
+    .flash { background: #fff4ce; padding: .6rem 1rem; border-radius: 8px; margin: 1rem 0; }
+    .entry { border-bottom: 1px solid #ddd; padding: .8rem 0; }
+    .meta { color: #666; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <h1>Cloud Guestbook</h1>
+  <span class="badge">environment: {{ env }}</span>
+  <p>A small web app deployed on cloud compute with a managed database.</p>
+
+  {% with messages = get_flashed_messages() %}
+    {% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}
+  {% endwith %}
+
+  <form method="post" action="{{ url_for('sign') }}">
+    <input name="name" placeholder="Your name" maxlength="60" required>
+    <textarea name="message" placeholder="Leave a message" maxlength="280" rows="3" required></textarea>
+    <button type="submit">Sign the guestbook</button>
+  </form>
+
+  <h2>Messages</h2>
+  {% for name, message, created_at in entries %}
+    <div class="entry"><strong>{{ name }}</strong><div>{{ message }}</div><div class="meta">{{ created_at }}</div></div>
+  {% else %}
+    <p>No messages yet. Be the first!</p>
+  {% endfor %}
+</body>
+</html>

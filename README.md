@@ -4,9 +4,9 @@ A small Flask web app deployed through the full path:
 
 **Application Code -> Cloud Compute -> Database/Storage -> Networking -> Live Web Application**
 
-- **Live URL:** `<paste your live URL here>`
-- **Cloud provider:** `<AWS / Render / Azure / GCP>`
-- **Region:** `<region>`
+- **Live URL:** `<https://cloud-web-app-deployment.onrender.com>`
+- **Cloud provider:** `<Render with managed PostgreSQL>`
+- **Region:** `<Singapore>`
 
 ## Architecture
 

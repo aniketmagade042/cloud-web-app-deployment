@@ -27,10 +27,9 @@ Render managed PostgreSQL (Singapore)
 
 | Objective | Where it is in this repo |
 |---|---|
-| Compute | `deploy/guestbook.service`, `Procfile` (Gunicorn on a VM / PaaS) |
-| Managed database | `DATABASE_URL` selects PostgreSQL in the cloud, SQLite locally |
-| Virtual networking | Security group rules in `docs/DEPLOYMENT.md` |
-|deploy/guestbook.service and deploy/nginx.conf are for deploying to an AWS VM instead.
+| Compute | `Procfile` and the Render web service (Gunicorn) |
+| Managed database | `DATABASE_URL` selects Render PostgreSQL in the cloud, SQLite locally |
+| Virtual networking | The app reaches the database over Render's internal network using the Internal Database URL |
 | IAM | Least-privilege notes in `docs/DEPLOYMENT.md` |
 | Cloud monitoring | `/health` endpoint plus CPU alarm steps |
 | Environment variables | `.env.example`, all config read in `app.py` |
@@ -38,10 +37,11 @@ Render managed PostgreSQL (Singapore)
 | Application logging | Logs to stdout and `logs/app.log` (no secrets logged) |
 | Resource quotas | Budget alert and quota check in `docs/DEPLOYMENT.md` |
 
+`deploy/guestbook.service` and `deploy/nginx.conf` are for deploying to an AWS VM instead of Render.
 ## Run locally
 
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
+aniketmagade042/cloud-web-app-deployment
 cd <repo-name>
 python3 -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -62,14 +62,12 @@ Step-by-step guides are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md):
 See [docs/learning-notes.md](docs/learning-notes.md).
 
 ## Evidence (add your screenshots to `screenshots/`)
-
 | What | File |
 |---|---|
-| Cloud console showing the running compute resource | `screenshots/01-compute.png` |
-| Managed database and its security group rule | `screenshots/02-database.png` |
-| Live site in the browser with an entry added | `screenshots/03-live-site.png` |
+| Render web service showing Live and the deploy logs | `screenshots/01-render-deploy.png` |
+| Managed PostgreSQL database showing Available | `screenshots/02-database.png` |
+| Live site with a guestbook entry | `screenshots/03-live-site.png` |
 | `/health` output | `screenshots/04-health.png` |
-| Logs and monitoring alarm | `screenshots/05-logs-monitoring.png` |
 
 ## Challenges and fixes
 
@@ -80,4 +78,4 @@ Delete the compute instance, database, and any storage when finished to avoid ch
 
 ## Author
 
-`Aniket Magade` | `[<LinkedIn URL>](https://www.linkedin.com/in/aniket-magade-959601448/)`
+Aniket Magade | [LinkedIn](https://www.linkedin.com/in/aniket-magade-959601448/)

@@ -30,6 +30,7 @@ Render managed PostgreSQL (Singapore)
 | Compute | `deploy/guestbook.service`, `Procfile` (Gunicorn on a VM / PaaS) |
 | Managed database | `DATABASE_URL` selects PostgreSQL in the cloud, SQLite locally |
 | Virtual networking | Security group rules in `docs/DEPLOYMENT.md` |
+|deploy/guestbook.service and deploy/nginx.conf are for deploying to an AWS VM instead.
 | IAM | Least-privilege notes in `docs/DEPLOYMENT.md` |
 | Cloud monitoring | `/health` endpoint plus CPU alarm steps |
 | Environment variables | `.env.example`, all config read in `app.py` |
@@ -72,12 +73,11 @@ See [docs/learning-notes.md](docs/learning-notes.md).
 
 ## Challenges and fixes
 
-- `<Problem you hit and how you solved it>`
-
+“The first deploy showed ‘Database is unavailable’. I checked the environment variables and logs, corrected the configuration, redeployed, and confirmed with /health returning db ok.”
 ## Clean-up
 
 Delete the compute instance, database, and any storage when finished to avoid charges.
 
 ## Author
 
-`<Your name>` | `<LinkedIn URL>`
+`Aniket Magade` | `[<LinkedIn URL>](https://www.linkedin.com/in/aniket-magade-959601448/)`

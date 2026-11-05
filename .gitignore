@@ -1,0 +1,14 @@
+# Secrets
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Local data and logs
+*.db
+logs/

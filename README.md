@@ -11,15 +11,16 @@ A small Flask web app deployed through the full path:
 
 ```
 User (browser)
-   |  HTTPS/HTTP
+   |  HTTPS
    v
-Internet --> Security group / firewall (80, 443 open; 22 only from my IP)
+Render public URL (HTTPS handled by the platform)
    |
    v
-Cloud compute (VM running Nginx + Gunicorn + Flask app)
-   |  port 5432, allowed ONLY from the app's security group
+Web service: Gunicorn + Flask app
+(config and secrets come from environment variables)
+   |  internal connection
    v
-Managed PostgreSQL database
+Render managed PostgreSQL (Singapore)
 ```
 
 ## Features that map to the module objectives
